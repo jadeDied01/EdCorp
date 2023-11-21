@@ -1,0 +1,110 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0a1c3b; /* Dark blue background color for the entire page */
+            color: white; /* Text color */
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #4b0082; /* Dark purple background color */
+            border-radius: 10px; /* Rounded corners */
+            text-align: center; /* Center align content */
+        }
+
+            .login-container img {
+                width: 45%; /* Make the image fill the container */
+                max-height: 175px; /* Set a maximum height for the image */
+                margin-bottom: 20px; /* Add some spacing below the image */
+            }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <img src="https://edcorponlineco.files.wordpress.com/2023/11/20231120_142426_0000.png?resize=320%2C320" alt="Your Image">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="validateForm(); return false;">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="verificationCode">Verification Code:</label>
+            <input type="text" id="verificationCode" name="verificationCode" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+	   function obfuscateCode(code) {
+        return code.split("").reverse().join("");
+    }
+        function validateForm() {
+        var username = document.getElementById("username").value;
+        var verificationCodeInput = document.getElementById("verificationCode");
+        var verificationCode = verificationCodeInput.value;
+
+            // Map of months to verification codes
+            var monthVerificationCodes = {
+                "January": "R6CVF29M2D",
+                "February": "Y5G9E74FLX",
+                "March": "MC3FK5SS8K",
+                "April": "HX8SK4L249",
+                "May": "DY93JS87WQ",
+                "June": "ALE4R66KLD",
+                "July": "XMN1Z5R69J",
+                "August": "SJDK45R61N",
+                "September": "JA34GMDE62",
+                "October": "FR1795DE77",
+                "November": "KE19R8RYX5",
+                "December": "JS12SH2AUH"
+            };
+
+           
+        var currentMonth = new Date().toLocaleString('en-US', { month: 'long' });
+        var obfuscatedCode = obfuscateCode(monthVerificationCodes[currentMonth]);
+
+        if (verificationCode === obfuscatedCode) {
+            // Redirect 
+            window.location.href = "https://your-redirect-url.com";
+        } else {
+            alert("Invalid verification code. Please try again.");
+        }
+    }
+</script>
+
+</body>
+</html>
